@@ -1,9 +1,9 @@
 class AmazonSerchsController < ApplicationController
   require 'amazon/ecs'
   Amazon::Ecs.options = {
-    :associate_tag =>     'Amazon アソシエイトのID',
-    :AWS_access_key_id => 'AWS のアクセスキー',
-    :AWS_secret_key =>    'AWS のシークレットキー'
+    :associate_tag =>     ENV["AMAZON_ASSOCIATE"],
+    :AWS_access_key_id => ENV["AWS_ACCESS_KEY_ID"],
+    :AWS_secret_key => ENV["AWS_SECRET_ACCESS_KEY"]
   }
   def index
     # 検索の実行
