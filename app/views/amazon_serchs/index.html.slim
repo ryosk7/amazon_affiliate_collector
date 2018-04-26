@@ -1,4 +1,4 @@
-h1 index page
+h1 index page (/app/views/amazon_serchs/index.html.slim)
 h2 とりあえず値を取得
 
 h3
@@ -6,10 +6,9 @@ h3
 h3
   = @title
 h3
-  = @detail_url
+  = link_to(@detail_url)
 h3
-  = @image_url
-h3
-  = @element_name
-h3
-  = @element_css
+    = image_tag(@image_url)
+
+- @books.each do |book|
+  = book.title

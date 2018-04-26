@@ -15,12 +15,15 @@ class AmazonSerchsController < ApplicationController
     )
     # 各商品ごとに処理
     amazon.items.each do |item|
-      @instance = item.class #=> 商品ごとに Amazon::Element のインスタンスが渡される
+      #@instance = item.class #=> 商品ごとに Amazon::Element のインスタンスが渡される
       @title = item.get('ItemAttributes/Title') #=> タイトルの取得（Amazon::Element.get(PATH) でパスを指定して値の取得）
       @detail_url = item.get('DetailPageURL') #=> 商品詳細URL
       @image_url = item.get("LargeImage/URL") #=> 商品画像URL
-      @element_name = item.get_element('ItemAttributes').get("Title") #=> Amazon::Element.get_element(ELEMENT_NAME) で子要素を取得
-      @element_css = item.get_element('ItemAttributes').elem.css("Title").text #=> Amazon::Element.elem で Nokogiri::XML::Element が取得できるので、css や xpath で要素の検索ができる
+      #@element_name = item.get_element('ItemAttributes').get("Title") #=> Amazon::Element.get_element(ELEMENT_NAME) で子要素を取得
+      #@element_css = item.get_element('ItemAttributes').elem.css("Title").text
+      book = Book.new(@title,@detail_url,@image_url)
+      @books = []
+      @books << book
     end
   end
 
